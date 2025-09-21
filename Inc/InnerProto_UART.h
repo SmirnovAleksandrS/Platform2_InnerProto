@@ -25,6 +25,7 @@ extern "C" {
 #define MAG_DATA_TYPE 0xA
 #define ACC_DATA_TYPE 0xB
 #define GYRO_DATA_TYPE 0xC
+#define PWM_DATA_TYPE 0xD
 
 extern UART_HandleTypeDef huart2;
 
@@ -49,6 +50,7 @@ union u32_to_u8
 // uint_least32_t Crc32(unsigned char *buf, size_t len);
 HAL_StatusTypeDef IPUART_sendData(uint8_t length, uint8_t* data, uint8_t type);       //Отправка  массива данных
 HAL_StatusTypeDef IPUART_send3u16(uint16_t x, uint16_t y, uint16_t z, uint8_t type);  //Шаблон отправки пакета данных от 3-х осевого датчика
+HAL_StatusTypeDef IPUART_send4u16(uint16_t PMW1, uint16_t PMW2, uint16_t PMW3, uint16_t PMW4, uint8_t type);  //Шаблон отправки пакета данных от приемника
 #ifdef __cplusplus
 }
 #endif

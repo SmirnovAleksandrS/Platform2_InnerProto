@@ -46,3 +46,18 @@ HAL_StatusTypeDef IPUART_send3u16(uint16_t x, uint16_t y, uint16_t z, uint8_t ty
     memcpy(buffer + 4, transform.u8, 2);
     return IPUART_sendData(6, buffer, type);
 }
+
+HAL_StatusTypeDef IPUART_send4u16(uint16_t PWM1, uint16_t PWM2, uint16_t PWM3, uint16_t PWM4, uint8_t type){  //Шаблон отправки пакета данных от приемника
+    union u16_to_u8 transform;
+    uint8_t buffer[8];
+
+    transform.u16 = PWM1;
+    memcpy(buffer, transform.u8, 2);
+    transform.u16 = PWM2;
+    memcpy(buffer + 2, transform.u8, 2);
+    transform.u16 = PWM3;
+    memcpy(buffer + 4, transform.u8, 2);
+    transform.u16 = PWM4;
+    memcpy(buffer + 6, transform.u8, 2);
+    return IPUART_sendData(8, buffer, type);
+}
